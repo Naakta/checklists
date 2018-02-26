@@ -8,7 +8,7 @@ A checklist/to-do app that uses tableViewControllers.
 -Edit from detail disclosure  
 -Check mark on tap  
 -Delete on swipe  
-
+-Data Persistence with documents folder
 
 **Next Step**  
--Data Persistence with documents folder
+-Add lists of items (ex. Birthdays, Groceries, To Do)
