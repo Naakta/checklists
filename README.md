@@ -6,9 +6,10 @@ A checklist/to-do app that uses tableViewControllers.
 **Current Features**  
 -Add from nav bar  
 -Edit from detail disclosure  
--Check mark on tap  
+-Checkmark on tap
 -Delete on swipe  
--Data Persistence with documents folder
+-Data Persistence with dataModel class
+-Add lists of items (ex. Birthdays, Groceries, To Do)
 
 **Next Step**  
--Add lists of items (ex. Birthdays, Groceries, To Do)
+-User Defaults
