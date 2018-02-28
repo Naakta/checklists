@@ -1,5 +1,5 @@
 //
-//  AddItemTableViewController.swift
+//  ItemDetailViewController.swift
 //  Checklists
 //
 //  Created by Doug Wagner on 2/7/18.
@@ -86,7 +86,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         // string = the character being typed in
         // range is the location of the textfield/string where the character should be input
         let oldText = textField.text!
-        let stringRange = Range(range, in:oldText)! // convert to swift Range
+        let stringRange = Range(range, in: oldText)! // convert to swift Range
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         
         // Below can be rewritten to doneBarButton.isEnabled = !newText.isEmpty
