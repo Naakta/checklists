@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate,UINavigationControllerDelegate {
     var dataModel: DataModel!
     
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
@@ -36,6 +36,27 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              willShow viewController: UIViewController,
+                              animated: Bool) {
+        if viewController === self {
+            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        
+        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        
+        if index != -1 {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
     }
     
     override func viewDidLoad() {
@@ -85,6 +106,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
+        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
+        
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }

@@ -11,8 +11,15 @@ import Foundation
 class DataModel {
     var lists = [Checklist]()
     
+    
     init() {
         loadChecklists()
+        registerDefaults() // Needed to avoid crashing on empty "lists" array
+    }
+    
+    func registerDefaults() {
+        let dictionary = ["ChecklistIndex": -1]
+        UserDefaults.standard.register(defaults: dictionary) // These two could have been combined
     }
     
     func documentsDirectory() -> URL {
