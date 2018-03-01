@@ -73,7 +73,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         return nil
     }
     
-    // Causes textfield to be active immediately
+    // Causes textfield to be active immediately - enabling the keyboard
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
