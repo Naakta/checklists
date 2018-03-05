@@ -46,9 +46,9 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             
             delegate?.itemDetailViewController(self, didFinishEditing: itemToEdit)
         } else {
-            let item = ChecklistItem()
-            item.text = textField.text! // force wrap because UI only allows strings to be pushed
-            item.checked = false
+            let item = ChecklistItem(text: textField.text!, checked: false)
+//            item.text = textField.text! // force wrap because UI only allows strings to be pushed
+//            item.checked = false
             
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }

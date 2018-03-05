@@ -127,7 +127,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
         
         // Cells using .subtitle style come with a built in UIImageView on the left
-//        cell.imageView!.image = UIImage(named: checklist.iconName)
+        cell.imageView!.image = UIImage(named: checklist.iconName)
         return cell
     }
     
