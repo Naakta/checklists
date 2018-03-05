@@ -16,6 +16,6 @@ A checklist/to-do app that uses tableViewControllers.
 -Checklists can have icons added or edited
 
 **Next Step**  
--Support for all screen sizes
--Local notifications
--Due dates
+-Support for all screen sizes  
+-Local notifications  
+-Due dates  
