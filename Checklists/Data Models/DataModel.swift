@@ -51,13 +51,21 @@ class DataModel {
             return checklist1.name.localizedStandardCompare(checklist2.name) == .orderedAscending })
     }
     
+    class func nextChecklistItemID() -> Int {
+        let userDefaults = UserDefaults.standard
+        let itemID = userDefaults.integer(forKey: "ChecklistItemID")
+        userDefaults.set(itemID + 1, forKey: "ChecklistItemID")
+        userDefaults.synchronize()
+        return itemID
+    }
+    
     func saveChecklists() {
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(lists)
             try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
-            print("Error ecoding item array!")
+            print("Error encoding item array!")
         }
     }
     
@@ -70,6 +78,7 @@ class DataModel {
                 sortChecklist()
             } catch {
                 print("Error decoding item array!")
+                print("File Path is: \(dataFilePath())")
             }
             
         }
