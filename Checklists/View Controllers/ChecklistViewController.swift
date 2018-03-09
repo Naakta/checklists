@@ -136,7 +136,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         
-        return formatter.string(from: date)
+        return "Due by \(formatter.string(from: date))"
     }
 }
 
