@@ -23,6 +23,9 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        checklist.sortChecklistItems()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -34,6 +37,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                 configureText(for: cell, with: item)
             }
         }
+        checklist.sortChecklistItems()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -52,27 +57,11 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         }
     }
     
-//    required init?(coder aDecoder: NSCoder) {
-//        let row0item = ChecklistItem()
-//        row0item.text = "Walk the dog"
-//        row0item.checked = false
-//        items.append(row0item)
-//
-//        let row1item = ChecklistItem()
-//        row1item.text = "Brush my teeth"
-//        row1item.checked = true
-//        items.append(row1item)
-//
-//        super.init(coder: aDecoder)
-//
-//        print("Documents folder is \(documentsDirectory())")
-//        print("Data file path is \(dataFilePath())")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         title = checklist.name
+        checklist.sortChecklistItems()
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,9 +124,19 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
-        let label = cell.viewWithTag(1000) as! UILabel   //This is weird - is this b/c of reference type variable?
+        let label = cell.viewWithTag(1000) as! UILabel
         label.text = item.text
-//        label.text = "\(item.itemID): \(item.text)"
+        
+        let subLabel = cell.viewWithTag(1002) as! UILabel
+        subLabel.text = configureDate(item.dueDate)
+    }
+    
+    func configureDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        return formatter.string(from: date)
     }
 }
 
